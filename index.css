@@ -1,0 +1,21 @@
+/* #state1 { */
+  /* width: 800px; */
+  /* height: 800px; */
+  /* display: block; */
+/* } */
+
+/* #state2 { */
+  /* width: 800px; */
+  /* height: 800px; */
+  /* display: block; */
+/* } */
+
+.node rect {
+  /* stroke: #333; */
+  /* fill: #fff; */
+}
+.edgePath path {
+  stroke: none;
+  fill: none;
+  stroke-width: 2px;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "comparisonViz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colormap": "^2.3.0",
+    "cytoscape": "^3.5.0",
+    "cytoscape-popper": "^1.0.4",
+    "d3": "^5.9.1",
+    "dagre-d3": "^0.6.3",
+    "jquery": "^3.3.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.2.1"
+  }
+}
