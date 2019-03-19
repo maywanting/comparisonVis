@@ -76,6 +76,6 @@ for i in range (len(infoData2['labels']) -1):
     trans[infoData2['labels'][i]][infoData2['labels'][i+1]] += 1
 
 infoData2['trans'] = trans
-print(trans)
+# print(trans)
 with open('../data/5piece/cluster_' + name2 + '.json', 'w') as outfile:
     json.dump(infoData2, outfile)

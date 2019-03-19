@@ -14,7 +14,7 @@ data1 = readCsv('null_chain')
 data1 = data1[1:, 1:7]
 
 data1 = [[float(i) for i in j] for j in data1]
-data1 = [item[:3] + item[4:] for item in data1]
+data1 = [[item[2]] + [item[5]] + [item[1]] + [item[4]] + [item[0]] for item in data1]
 #  data1 = np.array(data1)
 #  print(data1)
 #  exit()

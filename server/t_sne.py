@@ -20,12 +20,16 @@ data = np.concatenate((data1, data2), axis=0)
 
 after = TSNE(n_components=2).fit_transform(data)
 
-print(after.max)
+maxValue = after.max(axis=0)
+minValue = after.min(axis=0)
+rangeValue = 700.0 / (maxValue - minValue)
+after = (after - minValue) * rangeValue
+# print(after.max(axis=0))
 after1 = after[:2000]
 # print(after1.shape)
 after2 = after[2000:]
 # print(after2.shape)
-# with open('../data/5piece/tsne_' + name1 + '.json', 'w') as outfile:
-    # json.dump(after1.tolist(), outfile)
-# with open('../data/5piece/tsne_' + name2 + '.json', 'w') as outfile:
-    # json.dump(after2.tolist(), outfile)
+with open('../data/5piece/tsne_' + name1 + '.json', 'w') as outfile:
+    json.dump(after1.tolist(), outfile)
+with open('../data/5piece/tsne_' + name2 + '.json', 'w') as outfile:
+    json.dump(after2.tolist(), outfile)

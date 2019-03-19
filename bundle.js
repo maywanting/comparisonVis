@@ -285,6 +285,46 @@ const processController = {
                 return this.color2[this.chainCluster.labels[i]];
             });
     },
+    print2D: async function () {
+        await jsonData.getData('normal');
+        normalOrigin = jsonData.resData;
+        await jsonData.getData('chain');
+        chainOrigin = jsonData.resData;
+
+        const width = 800, height = 800;
+        const x = d3.scaleLinear().range([0, width]);
+        const y = d3.scaleLinear().range([height, 0]);
+        const chart = d3.select('#detail').attr('width', width).attr('height', height);
+
+        let zoom = 300;
+        chart.selectAll('.circle')
+            .data(normalOrigin)
+            .enter().append('circle')
+            .attr('cx', function(d) {
+                return d[3] * zoom + 10;
+            })
+            .attr('cy', function(d) {
+                return d[2] * zoom;
+            })
+            .attr('r', 2)
+            .style('fill', (d, i) => {
+                return this.color1[this.normalCluster.labels[i]];
+            });
+
+        chart.selectAll('.circle')
+            .data(chainOrigin)
+            .enter().append('circle')
+            .attr('cx', function(d) {
+                return d[3] * zoom + 10;
+            })
+            .attr('cy', function(d) {
+                return d[2] * zoom;
+            })
+            .attr('r', 2)
+            .style('fill', (d, i) => {
+                return this.color2[this.chainCluster.labels[i]];
+            });
+    },
 };
 
 (async function() {
@@ -292,6 +332,7 @@ const processController = {
     processController.printCluster();
     processController.printState();
     processController.printTime();
+    // processController.print1D();
 })();
 
 
