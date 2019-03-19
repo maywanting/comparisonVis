@@ -99,7 +99,7 @@ const colormap = __webpack_require__(/*! colormap */ "./node_modules/colormap/in
 const dagreD3 = __webpack_require__(/*! dagre-d3 */ "./node_modules/dagre-d3/index.js");
 
 const jsonData = {
-    filePath : '/data/5piece/',
+    filePath : 'data/5piece/',
     resData : [],
     getData : function(fileName) {
         let file = this.filePath + fileName + '.json';
@@ -120,22 +120,22 @@ const processController = {
     dataLoad : async function () {
         await jsonData.getData('pca_normal');
         this.normalData = jsonData.resData;
-        console.log(this.normalData);
+        // console.log(this.normalData);
 
         //load origin data of chain
         await jsonData.getData('pca_chain');
         this.chainData = jsonData.resData;
-        console.log(this.chainData);
+        // console.log(this.chainData);
 
         //load cluster info of normal
         await jsonData.getData('cluster_normal');
         this.normalCluster = jsonData.resData;
-        console.log(this.normalCluster);
+        // console.log(this.normalCluster);
 
         //load cluster info of chain
         await jsonData.getData('cluster_chain');
         this.chainCluster = jsonData.resData;
-        console.log(this.chainCluster);
+        // console.log(this.chainCluster);
 
         //init the colormap
         this.color1 = colormap({
