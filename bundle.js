@@ -99,7 +99,7 @@ const colormap = __webpack_require__(/*! colormap */ "./node_modules/colormap/in
 const dagreD3 = __webpack_require__(/*! dagre-d3 */ "./node_modules/dagre-d3/index.js");
 
 const jsonData = {
-    filePath : 'data/5piece/',
+    filePath : 'comparisonVis/data/5piece/',
     resData : [],
     getData : function(fileName) {
         let file = this.filePath + fileName + '.json';

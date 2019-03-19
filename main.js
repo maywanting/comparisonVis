@@ -4,7 +4,7 @@ const colormap = require('colormap');
 const dagreD3 = require('dagre-d3');
 
 const jsonData = {
-    filePath : 'data/5piece/',
+    filePath : 'comparisonVis/data/5piece/',
     resData : [],
     getData : function(fileName) {
         let file = this.filePath + fileName + '.json';
