@@ -160,7 +160,7 @@ const processController = {
     },
 
     printTime: function () {
-        const width = 1500;
+        const width = 1200;
         let number = this.normalCluster.labels.length;
         let gridWidth = width / number;
         const gridHeight = 100;
