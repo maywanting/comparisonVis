@@ -19,6 +19,7 @@ const processController = {
     chainData : [], //load origin data of chain
     normalCluster : [], //load cluster info of normal
     chainCluster : [], //load cluster info of chain
+    clusterNum : 0,
     color1: [],
     color2: [],
 
@@ -42,6 +43,7 @@ const processController = {
         this.chainCluster = jsonData.resData;
         // console.log(this.chainCluster);
 
+        this.clusterNum = this.normalCluster.centers.length;
         //init the colormap
         this.color1 = colormap({
             colormap: 'autumn',
@@ -55,6 +57,7 @@ const processController = {
             format: 'hex',
             alpha: 1
         });
+
     },
 
     printCluster : function () {
@@ -163,14 +166,16 @@ const processController = {
         const width = 1200;
         let number = this.normalCluster.labels.length;
         let gridWidth = width / number;
-        const gridHeight = 100;
+        const gridHeight = 100 / this.clusterNum;
         const time1 = d3.select('#time1').attr('width', width + 10);
 
         time1.selectAll('.rect')
             .data(this.normalCluster.labels)
             .enter().append('rect')
             .attr('x', function(d, i) {return i * gridWidth + 10;})
-            .attr('y', 0)
+            .attr('y', (d, i) => {
+                return this.normalCluster.labels[i] * gridHeight;
+            })
             .attr('width', gridWidth)
             .attr('height', gridHeight)
             .style('fill', (d, i) => {
@@ -183,12 +188,17 @@ const processController = {
             .data(this.chainCluster.labels)
             .enter().append('rect')
             .attr('x', function(d, i) {return i * gridWidth + 10;})
-            .attr('y', 0)
+            .attr('y', (d, i)=> {
+                return this.chainCluster.labels[i] * gridHeight;
+            })
             .attr('width', gridWidth)
             .attr('height', gridHeight)
             .style('fill', (d, i) => {
                 return this.color2[this.chainCluster.labels[i]];
             });
+        let zoom = d3.zoom().on("zoom", function() {
+            inner.attr("transform", d3.event.transform);
+        });
     },
     print2D: async function () {
         await jsonData.getData('normal');
