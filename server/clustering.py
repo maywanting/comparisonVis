@@ -46,14 +46,16 @@ for label in clf.labels_:
 # exit()
 
 
-infoData1['percentage'] = percence
+# infoData1['percentage'] = percence
+infoData1['percentage'] = [i/20.0 for i in percence]
 
 trans = [[0 for i in range(4)] for j in range(4)]
 
 for i in range (len(infoData1['labels']) -1):
     trans[infoData1['labels'][i]][infoData1['labels'][i+1]] += 1
 
-infoData1['trans'] = trans
+# infoData1['trans'] = [[value * 100 /percence[i] for value in trans[i]] for i in range(4)]
+infoData1['trans'] = [["%.2f" % (value * 100.0 /percence[i]) for value in trans[i]] for i in range(4)]
 
 with open('../data/5piece/cluster_' + name1 + '.json', 'w') as outfile:
     json.dump(infoData1, outfile)
@@ -68,14 +70,16 @@ percence = [0, 0, 0, 0]
 for label in clf.labels_:
     percence[label] += 1
 
-infoData2['percentage'] = percence
+infoData2['percentage'] = [i/20.0 for i in percence]
 
 trans = [[0 for i in range(4)] for j in range(4)]
 
 for i in range (len(infoData2['labels']) -1):
     trans[infoData2['labels'][i]][infoData2['labels'][i+1]] += 1
 
-infoData2['trans'] = trans
+# infoData2['trans'] = trans
+infoData2['trans'] = [["%.2f" % (value * 100.0 /percence[i]) for value in trans[i]] for i in range(4)]
+print(infoData2['trans'])
 # print(trans)
 with open('../data/5piece/cluster_' + name2 + '.json', 'w') as outfile:
     json.dump(infoData2, outfile)
