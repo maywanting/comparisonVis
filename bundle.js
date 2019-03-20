@@ -342,7 +342,7 @@ const processController = {
     processController.printCluster();
     processController.printState();
     processController.printTime();
-    // processController.print1D();
+    processController.print2D();
 })();
 
 
