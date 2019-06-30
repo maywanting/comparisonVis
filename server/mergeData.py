@@ -15,6 +15,7 @@ data1 = data1[1:, 1:7]
 
 data1 = [[float(i) for i in j] for j in data1]
 data1 = [[item[2]] + [item[5]] + [item[1]] + [item[4]] + [item[0]] for item in data1]
+# P1, P2, C1, C2, R
 #  data1 = np.array(data1)
 #  print(data1)
 #  exit()

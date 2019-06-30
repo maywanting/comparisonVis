@@ -4,30 +4,165 @@
         <title>Comparison</title>
         <link rel="stylesheet" href="./index.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     </head>
     <body>
         <div class="row">
             <div class="col-sm-6">
-                <svg id="cluster"> </svg>
+                <div class="card">
+                    <div class="card-content">
+                        <svg id="cluster"> </svg>
+                    </div>
+                    <div class="card-action">
+                        <div>
+                        Data: &nbsp;&nbsp;
+                        <label>
+                            <input type="checkbox" checked/>
+                            <span>cluster1</span>
+                        </label>&nbsp;&nbsp;
+                        <label>
+                            <input type="checkbox" checked/>
+                            <span>cluster2</span>
+                        </label>
+                        </div>
+                        <div >
+                        Algorithm: &nbsp;&nbsp;
+                        <label>
+                            <input type="text" value="t-SNE"/>
+                        </label>
+                        </div>
+                        <div>
+                        <span class="switch">
+                            Line: &nbsp;&nbsp;
+                            <label>
+                                <input name="line" type="radio" checked/>
+                                <span> On </span>
+                            </label>
+                            <label>
+                                <input name="line" type="radio"/>
+                                <span> Off </span>
+                            </label>
+                        </span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-6">
-                <svg id="state1" width="800" height="600"><g></g></svg>
-                <svg id="state2"></svg>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-panel teal lighten-2" style="padding-top: 14px;padding-bottom: 14px;font-size: 20px;margin-top: -5px;">
+                                    <span class="white-text">Cluster1</span>
+                                </div>
+                                <div id="state1" class="col-sm-12" style="height: 300px; width: 500px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-panel teal lighten-2" style="padding-top: 14px;padding-bottom: 14px;font-size: 20px;margin-top: -5px;">
+                                    <span class="white-text">Cluster2</span>
+                                    <i class="right material-icons">create</i>
+                                </div>
+                                <div id="state2" class="col-sm-12" style="height: 300px; width: 500px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                            <svg id="time2"></svg>
+                            <svg id="time1"> </svg>
+                </div>
+                <div class="row">
+                    <div class="card-panel teal lighten-2 col-sm-12 white-text">
+                        Setting
+                    </div>
+                </div>
             </div>
+
         </div>
         <div class="row">
-            <div class="col-sm-12">
-                <svg id="time1">
+            <div class="col-sm-4">
+                <div class="card">
+                <div class="card-content" id="detail-3D">
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="padding: 5px">
+                <svg id="detail1">
                 </svg>
-                <svg id="time2"></svg>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="padding: 5px">
+                <svg id="detail2">
+                </svg>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <svg id="detail">
-                </svg>
-            </div>
-        </div>
+        <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+        <script src="./plotly-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!-- <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
+        <!-- <script src="http://bl.ocks.org/upphiminn/raw/6515478/6360057567c907e61b59b7e17d348a8cc7b907fc/d3-ForceEdgeBundling.js"></script> -->
+        <script src="./assets/src/sigma.core.js"></script>
+        <script src="./assets/src/conrad.js"></script>
+        <script src="./assets/src/utils/sigma.utils.js"></script>
+        <script src="./assets/src/utils/sigma.polyfills.js"></script>
+        <script src="./assets/src/sigma.settings.js"></script>
+        <script src="./assets/src/classes/sigma.classes.dispatcher.js"></script>
+        <script src="./assets/src/classes/sigma.classes.configurable.js"></script>
+        <script src="./assets/src/classes/sigma.classes.graph.js"></script>
+        <script src="./assets/src/classes/sigma.classes.camera.js"></script>
+        <script src="./assets/src/classes/sigma.classes.quad.js"></script>
+        <script src="./assets/src/classes/sigma.classes.edgequad.js"></script>
+        <script src="./assets/src/captors/sigma.captors.mouse.js"></script>
+        <script src="./assets/src/captors/sigma.captors.touch.js"></script>
+        <script src="./assets/src/renderers/sigma.renderers.canvas.js"></script>
+        <script src="./assets/src/renderers/sigma.renderers.webgl.js"></script>
+        <script src="./assets/src/renderers/sigma.renderers.svg.js"></script>
+        <script src="./assets/src/renderers/sigma.renderers.def.js"></script>
+        <script src="./assets/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+        <script src="./assets/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+        <script src="./assets/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+        <script src="./assets/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+        <script src="./assets/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+        <script src="./assets/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+        <script src="./assets/src/renderers/svg/sigma.svg.utils.js"></script>
+        <script src="./assets/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+        <script src="./assets/src/renderers/svg/sigma.svg.edges.def.js"></script>
+        <script src="./assets/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+        <script src="./assets/src/renderers/svg/sigma.svg.labels.def.js"></script>
+        <script src="./assets/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+        <script src="./assets/src/middlewares/sigma.middlewares.rescale.js"></script>
+        <script src="./assets/src/middlewares/sigma.middlewares.copy.js"></script>
+        <script src="./assets/src/misc/sigma.misc.animation.js"></script>
+        <script src="./assets/src/misc/sigma.misc.bindEvents.js"></script>
+        <script src="./assets/src/misc/sigma.misc.bindDOMEvents.js"></script>
+        <script src="./assets/src/misc/sigma.misc.drawHovers.js"></script>
+        <!-- END SIGMA IMPORTS -->
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edges.dashed.js"></script>
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edges.dotted.js"></script>
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edges.parallel.js"></script>
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edges.tapered.js"></script>
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edgehovers.dashed.js"></script>
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edgehovers.dotted.js"></script>
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edgehovers.parallel.js"></script>
+        <script src="./assets/plugins/sigma.renderers.customEdgeShapes/sigma.canvas.edgehovers.tapered.js"></script>
         <script src="./bundle.js"></script>
     </body>
 </html>

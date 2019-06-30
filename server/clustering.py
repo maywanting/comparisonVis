@@ -57,6 +57,7 @@ for i in range (len(infoData1['labels']) -1):
 # infoData1['trans'] = [[value * 100 /percence[i] for value in trans[i]] for i in range(4)]
 infoData1['trans'] = [["%.2f" % (value * 100.0 /percence[i]) for value in trans[i]] for i in range(4)]
 
+print(infoData1)
 with open('../data/5piece/cluster_' + name1 + '.json', 'w') as outfile:
     json.dump(infoData1, outfile)
 
