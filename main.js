@@ -1,3 +1,4 @@
+import dataLoad from './components/dataLoad.js';
 const $ = require('jquery');
 const d3 = require('d3');
 const colormap = require('colormap');
@@ -138,7 +139,7 @@ const processController = {
         this.normalCluster.trans.forEach((arr, from) => {
             arr.forEach((value, to) => {
                 if ((value != '0.00') && (from != to)) {
-                console.log(value);
+                // console.log(value);
                     g1.edges.push({
                         id: 'e' + from + '-' + to,
                         source: 'n' + from,
@@ -397,9 +398,9 @@ const processController = {
     },
     print2D: async function () {
         await jsonData.getData('normal');
-        normalOrigin = jsonData.resData;
+        let normalOrigin = jsonData.resData;
         await jsonData.getData('chain');
-        chainOrigin = jsonData.resData;
+        let chainOrigin = jsonData.resData;
 
         const width = 400, height = 400;
         const x = d3.scaleLinear().range([0, width]);
@@ -455,9 +456,9 @@ const processController = {
 
     print3D: async function () {
         await jsonData.getData('normal');
-        normalOrigin = jsonData.resData;
+        let normalOrigin = jsonData.resData;
         await jsonData.getData('chain');
-        chainOrigin = jsonData.resData;
+        let chainOrigin = jsonData.resData;
         //P1, P2, C1, C2, R
         let normalData = [[], [], [], [], []];
         let chainData = [[], [], [], [], []];
@@ -532,6 +533,8 @@ const processController = {
 
 (async function() {
     await processController.dataLoad();
+    let test = new dataLoad();
+    test.init();
     processController.printCluster();
     processController.printState();
     processController.printTime();
