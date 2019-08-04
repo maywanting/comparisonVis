@@ -63,14 +63,22 @@
                             <svg id="time1"> </svg>
                 </div>
                 <div class="row">
-                    <div class="card-panel teal lighten-2 col-sm-12 white-text">
-                        <div >
-                        <div class="">
-                        <p>Time: </p>
-                        <p>State: </p>
-                        <p>State Cluster: </p>
-                        <p>Trajectory: </p>
-                        <p>Transition: </p>
+                    <div class="card-panel teal lighten-2 col-sm-12">
+                        <div class="card-content white-text">
+                            <div id="tab_time" style="display:block;">time</div>
+                            <div id="tab_state" style="display:none;">state</div>
+                            <div id="tab_state_cluster" style="display:none;">state cluster</div>
+                            <div id="tab_trajectory" style="display:none;">trajectory</div>
+                            <div id="tab_transition" style="display:none;">transition</div>
+                        </div>
+                        <div class="card-tabs">
+                            <ul class="tabs tabs-fixed-width tabs-transparent">
+                                <li class="tab"><a href="#tab_time" class="active" onclick="changetab('time')">Time</a></li>
+                                <li class="tab"><a href="#tab_state" class="" onclick="changetab('state')">State</a></li>
+                                <li class="tab"><a href="#tab_state_cluster" class="" onclick="changetab('state_cluster')">State Cluster</a></li>
+                                <li class="tab"><a href="#tab_trajectory" class="" onclick="changetab('trajectory')">Trajectory</a></li>
+                                <li class="tab"><a href="#tab_transition" class="" onclick="changetab('transition')">Transition</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

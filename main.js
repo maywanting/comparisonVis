@@ -4,6 +4,7 @@ const d3 = require('d3');
 const colormap = require('colormap');
 const dagreD3 = require('dagre-d3');
 
+
 const jsonData = {
     filePath : 'data/5piece/',
     resData : [],
@@ -529,6 +530,14 @@ const processController = {
         };
         Plotly.newPlot('detail-3D', [trace], layout);
     },
+    changetab : function (tab) {
+        let tab_name = '#tab' + tab;
+        let arr_tab = ['#tab_time', '#tab_state', '#tab_state_cluster', '#tab_trajectory', '#tab_transition'];
+        arr_tab.forEach(function(val) {
+            $(val).restyle('display:none;');
+        });
+        $(tab_name).restyle('display:block');
+    };
 };
 
 (async function() {
