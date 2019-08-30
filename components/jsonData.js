@@ -1,8 +1,12 @@
-export default class DataLoad {
-    construct () {
-        console.log("dataLoad aaaa");
+export default class jsonData {
+    static getData (fileName) {
+        let filePath = 'data/fish/';
+        let file = filePath + fileName + '.json';
+        return fetch(file).then(response => response.json()).then(jsondata => {
+            this.res = jsondata;
+        });
     }
-    init() {
-        console.log("init data load");
+    static resData () {
+        return this.res;
     }
 };

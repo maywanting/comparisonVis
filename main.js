@@ -1,20 +1,8 @@
-import dataLoad from './components/dataLoad.js';
+import jsonData from './components/jsonData.js';
 const $ = require('jquery');
 const d3 = require('d3');
 const colormap = require('colormap');
 const dagreD3 = require('dagre-d3');
-
-
-const jsonData = {
-    filePath : 'data/5piece/',
-    resData : [],
-    getData : function(fileName) {
-        let file = this.filePath + fileName + '.json';
-        return fetch(file).then(response => response.json()).then(jsondata => {
-            this.resData = jsondata;
-        });
-    },
-};
 
 const processController = {
     normalData : [], //load origin data of normal
@@ -27,23 +15,23 @@ const processController = {
     color2: [],
 
     dataLoad : async function () {
-        await jsonData.getData('tsne_normal');
-        this.normalData = jsonData.resData;
+        await jsonData.getData('pca_d1');
+        this.normalData = jsonData.resData();
         // console.log(this.normalData);
 
         //load origin data of chain
-        await jsonData.getData('tsne_chain');
-        this.chainData = jsonData.resData;
+        await jsonData.getData('pca_d2');
+        this.chainData = jsonData.resData();
         // console.log(this.chainData);
 
         //load cluster info of normal
-        await jsonData.getData('cluster1_normal');
-        this.normalCluster = jsonData.resData;
+        await jsonData.getData('cluster_d1');
+        this.normalCluster = jsonData.resData();
         // console.log(this.normalCluster);
 
         //load cluster info of chain
-        await jsonData.getData('cluster1_chain');
-        this.chainCluster = jsonData.resData;
+        await jsonData.getData('cluster_d2');
+        this.chainCluster = jsonData.resData();
         // console.log(this.chainCluster);
 
         this.normalNum= this.normalCluster.percentage.length;
@@ -63,7 +51,6 @@ const processController = {
             alpha: 1
         });
         console.log(this.color2);
-
     },
 
     printCluster : function () {
@@ -399,9 +386,9 @@ const processController = {
     },
     print2D: async function () {
         await jsonData.getData('normal');
-        let normalOrigin = jsonData.resData;
+        let normalOrigin = jsonData.resData();
         await jsonData.getData('chain');
-        let chainOrigin = jsonData.resData;
+        let chainOrigin = jsonData.resData();
 
         const width = 400, height = 400;
         const x = d3.scaleLinear().range([0, width]);
@@ -457,9 +444,9 @@ const processController = {
 
     print3D: async function () {
         await jsonData.getData('normal');
-        let normalOrigin = jsonData.resData;
+        let normalOrigin = jsonData.resData();
         await jsonData.getData('chain');
-        let chainOrigin = jsonData.resData;
+        let chainOrigin = jsonData.resData();
         //P1, P2, C1, C2, R
         let normalData = [[], [], [], [], []];
         let chainData = [[], [], [], [], []];
@@ -537,13 +524,11 @@ const processController = {
             $(val).restyle('display:none;');
         });
         $(tab_name).restyle('display:block');
-    };
+    },
 };
 
 (async function() {
     await processController.dataLoad();
-    let test = new dataLoad();
-    test.init();
     processController.printCluster();
     processController.printState();
     processController.printTime();
